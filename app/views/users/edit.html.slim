@@ -1,8 +1,13 @@
-h1 Editing user
+- provide(:title, 'settings')
 
-== render 'form'
+h1 = 'settings'
 
-=> link_to 'Show', @user
-'|
-=< link_to 'Back', users_path
+.row
+  .col-md-6.buffer-top
+    = render 'form'
 
+    p.buffer-top
+      = button_to 'change_password', edit_user_registration_path, method: :get,class: 'btn btn-primary'
+
+    p.buffer-top
+      = button_to 'delete_account', registration_path(@user), data: { confirm: 'destroy_confirm'}, method: :delete, class: 'btn btn-danger'

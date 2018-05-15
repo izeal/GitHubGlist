@@ -1,6 +1,6 @@
-- provide(:title, I18n.t('views.events.events'))
+- provide(:title, 'gists')
 
-h1 = I18n.t('views.events.events')
+h1 = 'gists'
 
 / .buffer-both
 /   = link_to I18n.t('views.create_event'), new_event_path, class: 'btn btn-success'
@@ -15,7 +15,7 @@ h1 = I18n.t('views.events.events')
 /   p = will_paginate
 
 .row.buffer-bottom
-  = render partial: 'gists/gist', collection: @gist
+  = render partial: 'gists/gist', collection: @gists
 
 / .buffer-both
   = will_paginate

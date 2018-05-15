@@ -1,6 +1,17 @@
-p#notice = notice
+- provide(:title, @user.name)
 
+.text-center
+  h1 = @user.name
+  / = image_tag user_avatar(@user)
+  - if @user == current_user
+    p.buffer-top
+      = link_to 'create_gist', new_gist_path, class: 'btn btn-success'
 
-=> link_to 'Edit', edit_user_path(@user)
-'|
-=< link_to 'Back', users_path
+.row
+  .col-md-12
+    - if @user.gists.any?
+      h3 = 'created'
+      .row
+        = render partial: 'gists/gist', collection: @user.gists
+    - else
+      p.buffer-top = 'this user dont create any gists'

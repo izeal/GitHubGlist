@@ -1,5 +1,7 @@
 class GistsController < ApplicationController
   before_action :set_gist, only: [:show]
+  before_action :authenticate_user!, except: [:show, :index, :all_list, :past_list]
+  before_action :set_current_user_gist, only: [:edit, :update, :destroy]
 
   def index
     @gists = Gist.all
@@ -47,5 +49,9 @@ class GistsController < ApplicationController
 
   def gist_params
     params.require(:gist).permit(:description, :body)
+  end
+
+  def set_current_user_gist
+    @gist = current_user.gists.find(params[:id])
   end
 end

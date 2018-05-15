@@ -15,6 +15,6 @@
     = f.file_field :avatar, class: 'btn btn-primary'
 
   .actions
-    = f.submit I18n.t('views.save'), class: 'btn btn-primary'
-    = I18n.t('views.or')
-    = link_to I18n.t('views.back'), user_path
+    = f.submit 'save', class: 'btn btn-primary'
+    = 'or'
+    = link_to 'back', user_path

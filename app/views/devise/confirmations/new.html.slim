@@ -1,10 +1,10 @@
-- provide(:title, I18n.t('resend_instructions.title'))
+- provide(:title, 'confirmations new')
 
 .row
   .col-md-6.col-md-offset-3
     .panel.panel-default.devise-bs
       .panel-heading
-        h2 = I18n.t('resend_instructions.title')
+        h2 = 'Send new instructions to confirm your acc'
 
       .panel-body
         = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
@@ -17,6 +17,6 @@
 
 
           .actions
-            = f.submit t('resend_instructions.resend'), class: 'btn btn-primary'
+            = f.submit 'resend', class: 'btn btn-primary'
 
         = render "devise/shared/links"
