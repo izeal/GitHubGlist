@@ -1,0 +1,9 @@
+= form_for @gist do |f|
+  - if @gist.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@gist.errors.count, "error")} prohibited this gist from being saved:"
+      ul
+        - @gist.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit
