@@ -1,6 +1,28 @@
-p#notice = notice
+- provide(:title, I18n.t('activerecord.models.event'))
+
+.event
+  .event-info.row
+    .col-md-12
+      / = content_tag 'div', '', class: 'event-background', style: "background-image: url(#{event_photo(@event)})"
+      .event-info-inner.row
+        .col-md-6
+          .event-description
+            h1 = @gist.description
+            h3 = l @gist.created_at, format: :long
+
+            p = @gist.body
+
+            - if current_user_can_edit?(@gist)
+              .buffer-top
+                = link_to I18n.t('views.events.change'), edit_gist_path(@gist), class: 'btn btn-primary'
+                = ' '
+                = link_to I18n.t('views.events.delete'), @gist, method: :delete, data: { confirm: I18n.t('views.events.destroy_confirm')}, class: 'btn btn-danger'
 
 
-=> link_to 'Edit', edit_gist_path(@gist)
-'|
-=< link_to 'Back', gists_path
+  / .row
+    .col-md-8
+      .event-comments.buffer-top
+        = render partial: 'comments/form', locals: { comment: @new_comment || @event.comments.build }
+        .buffer-both
+          = render partial: 'comments/comment', collection: @event.comments.except(@new_comment)
+

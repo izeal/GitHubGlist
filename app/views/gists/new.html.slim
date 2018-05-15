@@ -1,5 +1,7 @@
-h1 New gist
+- provide(:title, I18n.t('views.create_event'))
 
-== render 'form'
+h1 = I18n.t('views.create_event')
 
-= link_to 'Back', gists_path
+.row
+  .col-md-6.buffer-top
+    = render 'form'

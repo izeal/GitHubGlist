@@ -1,19 +1,21 @@
-h1 Listing gists
+- provide(:title, I18n.t('views.events.events'))
 
-table
-  thead
-    tr
-      th
-      th
-      th
+h1 = I18n.t('views.events.events')
 
-  tbody
-    - @gists.each do |gist|
-      tr
-        td = link_to 'Show', gist
-        td = link_to 'Edit', edit_gist_path(gist)
-        td = link_to 'Destroy', gist, data: { confirm: 'Are you sure?' }, method: :delete
+/ .buffer-both
+/   = link_to I18n.t('views.create_event'), new_event_path, class: 'btn btn-success'
 
-br
+/ .buffer-both
+/   = link_to 'Прошедшие события', past_events_path, method: :get, class: 'btn btn-primary'
+/   '
+/   = link_to 'Все', all_events_path, method: :get, class: 'btn btn-primary'
+/   '
+/   = link_to 'Будущие события', root_path, class: 'btn btn-primary'
 
-= link_to 'New Gist', new_gist_path
+/   p = will_paginate
+
+.row.buffer-bottom
+  = render partial: 'gists/gist', collection: @gist
+
+/ .buffer-both
+  = will_paginate

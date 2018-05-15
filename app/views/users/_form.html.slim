@@ -1,9 +1,20 @@
-= form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      ul
-        - @user.errors.full_messages.each do |message|
-          li = message
+= form_for @user, html: { mutipart: true } do |f|
+  = render partial: 'partials/errors_viewer', locals: {model: @user}
 
-  .actions = f.submit
+  .form-group
+    = f.label :name
+    = f.text_field :name, autofocus: true, class: 'form-control', placeholder: :name
+
+  .form-group
+    = f.label :email
+    = f.text_field :email, autofocus: true, class: 'form-control', placeholder: :email
+
+  / .form-group
+    = f.label :avatar
+    p = image_tag(@user.avatar.thumb.url) if @user.avatar?
+    = f.file_field :avatar, class: 'btn btn-primary'
+
+  .actions
+    = f.submit I18n.t('views.save'), class: 'btn btn-primary'
+    = I18n.t('views.or')
+    = link_to I18n.t('views.back'), user_path

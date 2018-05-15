@@ -1,9 +1,16 @@
 = form_for @gist do |f|
-  - if @gist.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@gist.errors.count, "error")} prohibited this gist from being saved:"
-      ul
-        - @gist.errors.full_messages.each do |message|
-          li = message
+  = render partial: 'partials/errors_viewer', locals: { model: @gist }
 
-  .actions = f.submit
+  .form-group
+    = f.label :description
+    = f.text_field :description, autofocus: true, class: 'form-control', placeholder: true
+
+  .form-group
+    = f.label :body
+    = f.text_field :body, autofocus: true, class: 'form-control', placeholder: true
+
+
+  .actions
+    = f.submit I18n.t('views.save'), class: 'btn btn-primary'
+    = I18n.t('views.or')
+    = link_to I18n.t('views.back'), :back
