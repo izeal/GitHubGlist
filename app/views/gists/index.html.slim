@@ -2,20 +2,22 @@
 
 h1 = 'gists'
 
-/ .buffer-both
-/   = link_to I18n.t('views.create_event'), new_event_path, class: 'btn btn-success'
+.buffer-both
+  = link_to 'create_gist', new_gist_path, class: 'btn btn-success'
 
-/ .buffer-both
-/   = link_to 'Прошедшие события', past_events_path, method: :get, class: 'btn btn-primary'
-/   '
-/   = link_to 'Все', all_events_path, method: :get, class: 'btn btn-primary'
-/   '
-/   = link_to 'Будущие события', root_path, class: 'btn btn-primary'
+p Sort by
+.buffer-both
+  = link_to 'Недавно созданные', resently_created_gists_path, method: :get, class: 'btn btn-primary'
+  '
+  = link_to 'Давно созданные', least_resently_created_gists_path, method: :get, class: 'btn btn-primary'
+  '
+  = link_to 'Недавно обновленные', resently_updated_gists_path, class: 'btn btn-primary'
+  '
+  = link_to 'Давно обновленные', least_resently_updated_gists_path, class: 'btn btn-primary'
 
-/   p = will_paginate
 
 .row.buffer-bottom
   = render partial: 'gists/gist', collection: @gists
 
-/ .buffer-both
+.buffer-both
   = will_paginate

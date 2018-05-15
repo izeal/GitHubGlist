@@ -2,7 +2,7 @@
 
 .text-center
   h1 = @user.name
-  / = image_tag user_avatar(@user)
+  = image_tag user_avatar(@user)
   - if @user == current_user
     p.buffer-top
       = link_to 'create_gist', new_gist_path, class: 'btn btn-success'

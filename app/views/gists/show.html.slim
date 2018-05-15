@@ -19,10 +19,10 @@
                 = link_to 'delete', @gist, method: :delete, data: { confirm: 'destroy_confirm'}, class: 'btn btn-danger'
 
 
-  / .row
+  .row
     .col-md-8
       .event-comments.buffer-top
-        = render partial: 'comments/form', locals: { comment: @new_comment || @event.comments.build }
+        = render partial: 'comments/form', locals: { comment: @new_comment || @gist.comments.build }
         .buffer-both
-          = render partial: 'comments/comment', collection: @event.comments.except(@new_comment)
+          = render partial: 'comments/comment', collection: @gist.comments.except(@new_comment)
 

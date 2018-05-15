@@ -1,0 +1,8 @@
+= form_for [@gist, comment] do |f|
+  = render partial: 'partials/errors_viewer', locals: { model: comment }
+
+  .form-group
+    = f.label :body
+    = f.text_area :body, placeholder: true, class: 'form-control'
+
+  .actions = f.submit 'send', class: 'btn btn-primary'
