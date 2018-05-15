@@ -1,0 +1,5 @@
+class AddUserToGists < ActiveRecord::Migration[5.1]
+  def change
+    add_reference :gists, :user, foreign_key: true
+  end
+end

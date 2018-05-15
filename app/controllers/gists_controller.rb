@@ -42,7 +42,7 @@ class GistsController < ApplicationController
   private
 
   def set_gist
-    @event = Event.find(params[:id])
+    @gist = Gist.find(params[:id])
   end
 
   def gist_params
