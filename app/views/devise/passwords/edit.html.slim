@@ -1,0 +1,33 @@
+- provide(:title, I18n.t('views.change_password'))
+
+.row
+  .col-md-6.buffer-top
+    .panel.panel-default.devise-bs
+      .panel-heading
+        h2 =  I18n.t('views.change_password')
+
+      .panel-body
+        = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+
+          = render partial: 'partials/errors_viewer', locals: {model: @user}
+
+          = f.hidden_field :reset_password_token
+
+          fieldset.form-group
+            = f.label :password, I18n.t('views.new_password')
+            br
+            - if @minimum_password_length
+              em
+                = "(#{@minimum_password_length} #{I18n.t('views.password_min_length')})"
+            br
+            = f.password_field :password, autofocus: true, autocomplete: "off", placeholder: true, class: 'form-control'
+
+          fieldset.form-group
+            = f.label :password_confirmation
+            br
+            = f.password_field :password_confirmation, autocomplete: "off", placeholder: true, class: 'form-control'
+
+          .actions
+            = f.submit I18n.t('views.save'), class: 'btn btn-primary'
+
+        = render "devise/shared/links"
