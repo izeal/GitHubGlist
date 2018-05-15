@@ -3,8 +3,6 @@
     = link_to gist.user.name, user_path(gist.user)
     '  /
     = link_to gist.description, gist_path(gist)
-
-
   small = "Created #{l(gist.created_at, format: :long)}"
   .thumbnail
     .caption

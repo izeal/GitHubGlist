@@ -1,17 +1,22 @@
 .buffer-bottom
-  p = comment.body
+
   p
-    span
-      - if comment.user
-        = render partial: 'users/user', object: comment.user
-      - else
-        em
-          strong = comment.user_name
-
-    em
+    span.user-avatar
+      = image_tag user_avatar(comment.user), class: "img-icon"
       '
-      = l comment.created_at, format: :long
+    = link_to comment.user.name, user_path(comment.user)
+    '
+    small = "Commented #{l(comment.created_at, format: :long)}"
+    '
 
-    / - if current_user_can_edit?(comment) || user_owner_of?(@event)
-      '
+    -# if current_user_can_edit?(comment) || user_owner_of?(@event)
+    = link_to fa_icon('pencil'), edit_gist_comment_path(comment.gist, comment)
+    '
     = link_to fa_icon('trash'), gist_comment_path(comment.gist, comment), method: :delete, data: { confirm: 'destroy_confirm' }
+
+  .thumbnail
+    .caption
+      p = comment.body
+
+
+
