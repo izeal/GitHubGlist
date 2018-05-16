@@ -1,5 +1,5 @@
 class GistsController < ApplicationController
-  before_action :set_gist, only: [:show]
+  before_action :find_gist, only: [:show]
   before_action :authenticate_user!, except: [:show, :index, :all_list, :past_list]
   before_action :set_current_user_gist, only: [:edit, :update, :destroy]
 
@@ -9,6 +9,7 @@ class GistsController < ApplicationController
 
   def show
     @new_comment = @gist.comments.build(params[:comment])
+    @comments = @gist.comments.select(&:persisted?)
   end
 
   def new
@@ -65,7 +66,7 @@ class GistsController < ApplicationController
 
   private
 
-  def set_gist
+  def find_gist
     @gist = Gist.find(params[:id])
   end
 

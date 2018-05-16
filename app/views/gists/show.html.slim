@@ -1,26 +1,12 @@
 - provide(:title, 'gist')
 
 .row
-  .col-md-12
-    p
-      = link_to @gist.user.name, user_path(@gist.user)
-      '  /
-      = link_to @gist.description, gist_path(@gist)
-    small = "Created #{l(@gist.created_at, format: :long)}"
+  .col.col-md-8
+    = render partial: 'gists/gist', object: @gist
 
-    .thumbnail
-      .caption
-        p = @gist.body
-
-        - if current_user_can_edit?(@gist)
-          .buffer-top
-            = link_to 'change', edit_gist_path(@gist), class: 'btn btn-primary'
-            = ' '
-            = link_to 'delete', @gist, method: :delete, data: { confirm: 'destroy_confirm'}, class: 'btn btn-danger'
-
-    .buffer-both
-      = render partial: 'comments/comment', collection: @gist.comments.except(@new_comment)
+    - if @gist.comments.any?
+      .buffer-both
+        = render partial: 'comments/comment', collection: @comments
 
     .buffer-top
-      = render partial: 'comments/form', locals: { comment: @new_comment || @gist.comments.build }
-
+      = render partial: 'comments/form', locals: { comment: @new_comment || current_user.comments.build }

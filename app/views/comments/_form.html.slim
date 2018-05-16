@@ -1,5 +1,5 @@
-= form_for [@gist, @comment] do |f|
-  = render partial: 'partials/errors_viewer', locals: { model: @comment }
+= form_for [@gist, comment] do |f|
+  = render partial: 'partials/errors_viewer', locals: { model: comment }
 
   .form-group
     = f.label :body

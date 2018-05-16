@@ -1,22 +1,17 @@
-.buffer-bottom
-
-  p
-    span.user-avatar
-      = image_tag user_avatar(comment.user), class: "img-icon"
+p
+  span.user-avatar
+    = image_tag user_avatar(comment.user), class: "img-icon"
+    '
+  = link_to comment.user.name, user_path(comment.user)
+  '
+  small
+    = "Commented #{time_ago_in_words(comment.created_at)} ago"
+    '
+    - if current_user_can_edit?(comment)
+      = link_to fa_icon('pencil'), edit_gist_comment_path(comment.gist, comment)
       '
-    = link_to comment.user.name, user_path(comment.user)
-    '
-    small = "Commented #{l(comment.created_at, format: :long)}"
-    '
+      = link_to fa_icon('trash'), gist_comment_path(comment.gist, comment), method: :delete, data: { confirm: 'destroy_confirm' }
 
-    -# if current_user_can_edit?(comment) || user_owner_of?(@event)
-    = link_to fa_icon('pencil'), edit_gist_comment_path(comment.gist, comment)
-    '
-    = link_to fa_icon('trash'), gist_comment_path(comment.gist, comment), method: :delete, data: { confirm: 'destroy_confirm' }
-
-  .thumbnail
-    .caption
-      p = comment.body
-
-
-
+.thumbnail
+  .caption
+    p = comment.body

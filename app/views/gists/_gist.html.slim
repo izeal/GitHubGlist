@@ -1,10 +1,19 @@
-.col.col-md-8
-  p
-    = link_to gist.user.name, user_path(gist.user)
-    '  /
-    = link_to gist.description, gist_path(gist)
-  small = "Created #{l(gist.created_at, format: :long)}"
-  .thumbnail
-    .caption
-      p
-        buffer-both = gist.body
+p
+  span.user-avatar
+    = image_tag user_avatar(gist.user), class: "img-icon"
+    '
+  = link_to gist.user.name, user_path(gist.user)
+  '  /
+  = link_to gist.description, gist_path(gist)
+small
+  = "Created #{time_ago_in_words(gist.created_at)} ago"
+  '
+  - if current_user_can_edit?(gist)
+    = link_to fa_icon('pencil'), edit_gist_path(gist)
+    = ' '
+    = link_to fa_icon('trash'), gist, method: :delete, data: { confirm: 'destroy_confirm'}
+
+.thumbnail
+  .caption
+    p
+      buffer-both = gist.body

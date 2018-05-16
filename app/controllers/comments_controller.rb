@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :find_gist, only: [:new, :create, :destroy, :edit, :update]
+  before_action :find_comment, only: [:edit, :update, :destroy]
 
   def new
     @comment = @gist.comments.build
@@ -20,29 +21,30 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @comment = Comment.find(params[:id])
   end
 
   def update
-    @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
-      flash[:success] = "gist обновлен"
-      redirect_to user_path(@gist.user)
+      flash[:success] = "comment обновлен"
+      redirect_to gist_path(@gist)
     else
-      flash[:danger] = "Текст ответа не может превышать
+      flash[:danger] = "Текст commenta не может превышать
                         255 символов либо быть пустым"
       render 'edit'
     end
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
-    flash[:success] = "Ответ удален"
+    flash[:success] = "comment удален"
     redirect_to gist_path(@gist)
   end
 
   private
+
+  def find_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def find_gist
     @gist = Gist.find(params[:gist_id])
