@@ -1,24 +1,25 @@
 - provide(:title, 'gists')
 
-.navbar
-  h3 Discover gists
-  ul.nav.navbar-nav.navbar-right
-    li.dropdown
-      a.dropdown-toggle[href="#" data-toggle="dropdown"]
-        | Sort options
-        b.caret
-      ul.dropdown-menu
-        li
-          = link_to 'Недавно созданные', resently_created_gists_path
-        li
-          = link_to 'Давно созданные', least_resently_created_gists_path
-        li
-          = link_to 'Недавно обновленные', resently_updated_gists_path
-        li
-          = link_to 'Давно обновленные', least_resently_updated_gists_path
+.col-md-9
+  .navbar
+    h3 Discover gists
+    ul.nav.navbar-nav.navbar-right
+      li.dropdown
+        a.dropdown-toggle[href="#" data-toggle="dropdown"]
+          | Sort options
+          b.caret
+        ul.dropdown-menu
+          li
+            = link_to 'Недавно созданные', resently_created_gists_path
+          li
+            = link_to 'Давно созданные', least_resently_created_gists_path
+          li
+            = link_to 'Недавно обновленные', resently_updated_gists_path
+          li
+            = link_to 'Давно обновленные', least_resently_updated_gists_path
 
-.row.buffer-bottom
-  = render partial: 'gists/gist', collection: @gists
+  .row.buffer-bottom
+    = render partial: 'gists/gist', collection: @gists
 
-.buffer-both
-  = will_paginate
+  .buffer-both
+    = will_paginate

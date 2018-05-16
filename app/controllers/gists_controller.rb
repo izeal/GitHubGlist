@@ -1,6 +1,9 @@
 class GistsController < ApplicationController
   before_action :find_gist, only: [:show]
-  before_action :authenticate_user!, except: [:show, :index, :all_list, :past_list]
+  before_action :authenticate_user!, except: [
+    :show, :index, :resently_created, :least_resently_created,
+    :resently_updated, :least_resently_updated
+  ]
   before_action :set_current_user_gist, only: [:edit, :update, :destroy]
 
   def index

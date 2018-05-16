@@ -8,5 +8,4 @@ class User < ApplicationRecord
   has_many :comments
 
   validates :name, presence: true, length: { maximum: 35 }
-
 end
