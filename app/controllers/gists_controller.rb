@@ -8,7 +8,7 @@ class GistsController < ApplicationController
   # проверять свой ли гист редактирует и удаляет юзер
 
   def index
-    @gists = Gist.paginate(:page => params[:page], :per_page => 5)
+    @gists = Gist.paginate(:page => params[:page], :per_page => 5).created_at_desc
   end
 
   def show

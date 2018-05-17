@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_action :find_gist, only: [:create, :destroy, :edit, :update]
   before_action :find_comment, only: [:edit, :update, :destroy]
   # добавить проверку может ли юзер редактировать комментарии
-
+  # сделать чтоб для не зареганнова пользователя не было видно форму комента
+  # не отправлять себе письма если ты коммент у себя под гистом написал
   def create
     @comment = @gist.comments.build(comment_params)
     @comment.user = current_user
