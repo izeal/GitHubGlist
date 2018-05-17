@@ -1,18 +1,17 @@
 class CommentsController < ApplicationController
   before_action :find_gist, only: [:create, :destroy, :edit, :update]
   before_action :find_comment, only: [:edit, :update, :destroy]
-
+  # добавить проверку может ли юзер редактировать комментарии
 
   def create
     @comment = @gist.comments.build(comment_params)
     @comment.user = current_user
 
     if @comment.save
-      flash[:success] = t('controllers.comments.created')
-      redirect_to gist_path(@gist)
+      redirect_to gist_path(@gist), notice: t('controllers.comments.created')
+      GistMailer.comment(@comment).deliver_now
     else
-      flash[:danger] = t('controllers.comments.error')
-      redirect_to gist_path(@gist)
+      redirect_to gist_path(@gist), alert: t('controllers.comments.error')
     end
   end
 
@@ -21,18 +20,18 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      flash[:success] = t('controllers.comments.updated')
-      redirect_to gist_path(@gist)
+      redirect_to gist_path(@gist), notice: t('controllers.comments.updated')
     else
-      flash[:danger] = t('controllers.comments.error')
-      render 'edit'
+      render 'edit', alert: t('controllers.comments.error')
     end
   end
 
   def destroy
-    @comment.destroy
-    flash[:success] = t('controllers.comments.destroyed')
-    redirect_to gist_path(@gist)
+    #todo проверь чтоб комменты мог удалять и владелец гиста и автор коммента
+
+    @comment.destroy!
+    GistMailer.comment_destroyed(@comment).deliver_now
+    redirect_to gist_path(@gist), notice: t('controllers.comments.destroyed')
   end
 
   private

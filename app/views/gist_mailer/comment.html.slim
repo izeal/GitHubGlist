@@ -1,0 +1,9 @@
+h1 К вашему гисту написали новый комментарий
+
+p = "#{@comment.body}"
+
+p Автор комментария:
+strong = @comment.user.name
+
+p Ссылка на ваш гист
+= link_to 'здесь', gist_url(@gist)
