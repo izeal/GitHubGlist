@@ -1,22 +1,18 @@
 class CommentsController < ApplicationController
-  before_action :find_gist, only: [:new, :create, :destroy, :edit, :update]
+  before_action :find_gist, only: [:create, :destroy, :edit, :update]
   before_action :find_comment, only: [:edit, :update, :destroy]
 
-  def new
-    @comment = @gist.comments.build
-  end
 
   def create
     @comment = @gist.comments.build(comment_params)
     @comment.user = current_user
 
     if @comment.save
-      flash[:success] = "Комментарий написан"
+      flash[:success] = t('controllers.comments.created')
       redirect_to gist_path(@gist)
     else
-      flash[:danger] = "Текст комментария не может превышать
-                        255 символов либо быть пустым"
-      render 'new'
+      flash[:danger] = t('controllers.comments.error')
+      redirect_to gist_path(@gist)
     end
   end
 
@@ -25,18 +21,17 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      flash[:success] = "comment обновлен"
+      flash[:success] = t('controllers.comments.updated')
       redirect_to gist_path(@gist)
     else
-      flash[:danger] = "Текст commenta не может превышать
-                        255 символов либо быть пустым"
+      flash[:danger] = t('controllers.comments.error')
       render 'edit'
     end
   end
 
   def destroy
     @comment.destroy
-    flash[:success] = "comment удален"
+    flash[:success] = t('controllers.comments.destroyed')
     redirect_to gist_path(@gist)
   end
 

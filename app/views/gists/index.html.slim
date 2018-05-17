@@ -2,21 +2,21 @@
 
 .col-md-9
   .navbar
-    h3 Discover gists
+    h3 = t('views.gist.discover')
     ul.nav.navbar-nav.navbar-right
       li.dropdown
         a.dropdown-toggle[href="#" data-toggle="dropdown"]
-          | Sort options
+          = t('views.gist.sort_options')
           b.caret
         ul.dropdown-menu
           li
-            = link_to 'Недавно созданные', resently_created_gists_path
+            = link_to t('views.gist.resently_created'), resently_created_gists_path
           li
-            = link_to 'Давно созданные', least_resently_created_gists_path
+            = link_to t('views.gist.least_resently_created'), least_resently_created_gists_path
           li
-            = link_to 'Недавно обновленные', resently_updated_gists_path
+            = link_to t('views.gist.resently_update'), resently_updated_gists_path
           li
-            = link_to 'Давно обновленные', least_resently_updated_gists_path
+            = link_to t('views.gist.least_resently_updated'), least_resently_updated_gists_path
 
   .row.buffer-bottom
     = render partial: 'gists/gist', collection: @gists

@@ -4,7 +4,7 @@
   .col-md-6.col-md-offset-3
     .panel.panel-default.devise-bs
       .panel-heading
-        h2 = 'Send new instructions to confirm your acc'
+        h2 = t('views.user.send_instructions')
 
       .panel-body
         = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
@@ -17,6 +17,6 @@
 
 
           .actions
-            = f.submit 'resend', class: 'btn btn-primary'
+            = f.submit t('views.user.resend'), class: 'btn btn-primary'
 
         = render "devise/shared/links"

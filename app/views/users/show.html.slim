@@ -8,8 +8,8 @@
 
   .col-md-9
     - if @user.gists.any?
-      h3 = 'created'
+      h3 = t('views.user.created')
       .row
         = render partial: 'gists/gist', collection: @user.gists
     - else
-      p.buffer-top = 'this user dont create any gists'
+      p.buffer-top = t('views.user.not_created')

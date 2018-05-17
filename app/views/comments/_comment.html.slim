@@ -5,12 +5,16 @@ p
   = link_to comment.user.name, user_path(comment.user)
   '
   small
-    = "Commented #{time_ago_in_words(comment.created_at)} ago"
+    = t('views.comment.commented')
+    '
+    = time_ago_in_words(comment.created_at)
+    '
+    = t('views.comment.ago')
     '
     - if current_user_can_edit?(comment)
       = link_to fa_icon('pencil'), edit_gist_comment_path(comment.gist, comment)
       '
-      = link_to fa_icon('trash'), gist_comment_path(comment.gist, comment), method: :delete, data: { confirm: 'destroy_confirm' }
+      = link_to fa_icon('trash'), gist_comment_path(comment.gist, comment), method: :delete, data: { confirm: t('views.comment.destroy_confirm') }
 
 .thumbnail
   .caption

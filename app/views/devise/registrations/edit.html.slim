@@ -1,10 +1,10 @@
-- provide(:title, 'change_password')
+- provide(:title, t('views.user.change_password'))
 
 .row
   .col-md-6.buffer-top
     .panel.panel-default.devise-bs
       .panel-heading
-        h2 = 'change_password'
+        h2 = t('views.user.change_password')
 
       .panel-body
         = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
@@ -12,20 +12,20 @@
           = render partial: 'partials/errors_viewer', locals: {model: @user}
 
           fieldset.form-group
-            = f.label :password
-            i = " (#{'new_password'})"
-            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: :password
+            = f.label :password, t('views.user.new_password')
+            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: true
 
           fieldset.form-group
             = f.label :password_confirmation
-            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: true
 
           fieldset.form-group
-            = f.label :current_password
-            i = " (#{'current_password'})"
-            = f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: :current_password
+            = f.label :current_password, t('views.user.current_password')
+            = f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: true
 
           .actions
-            = f.submit 'save', class: 'btn btn-primary'
-            = 'or'
-            = link_to 'back', edit_user_path(@user)
+            = f.submit t('views.btn.save'), class: 'btn btn-primary'
+            '
+            = t('views.btn.or')
+            '
+            = link_to t('views.btn.back'), edit_user_path(@user)

@@ -26,7 +26,7 @@ class GistsController < ApplicationController
     @gist = current_user.gists.build(gist_params)
 
     if @gist.save
-      redirect_to @gist, notice: I18n.t('controllers.events.created')
+      redirect_to @gist, notice: t('controllers.gists.created')
     else
       render :new
     end
@@ -34,7 +34,7 @@ class GistsController < ApplicationController
 
   def update
     if @gist.update(gist_params)
-      redirect_to @gist, notice: I18n.t('controllers.events.updated')
+      redirect_to @gist, notice: t('controllers.gists.updated')
     else
       render :edit
     end
@@ -43,7 +43,7 @@ class GistsController < ApplicationController
   def destroy
     user = @gist.user
     @gist.destroy
-    redirect_to user_path(user), notice: I18n.t('controllers.events.destroyed')
+    redirect_to user_path(user), notice: t('controllers.gists.destroyed')
   end
 
 

@@ -2,12 +2,12 @@
   .container
     = link_to 'GitHubGlist', new_gist_path, class: 'navbar-brand'
     '
-    = link_to 'All glists', root_path, class: 'navbar-brand'
+    = link_to t('views.gist.all'), root_path, class: 'navbar-brand'
     '
     = link_to 'GitHub', 'https://github.com/', class: 'navbar-brand'
     ul.nav.navbar-nav.navbar-right
       - if user_signed_in?
-        li = link_to 'New glist', new_gist_path
+        li = link_to t('views.gist.new_gist'), new_gist_path
         li.dropdown
           a.dropdown-toggle[href="#" data-toggle="dropdown"]
             |
@@ -16,13 +16,13 @@
             b.caret
           ul.dropdown-menu
             li
-              = link_to "Profile", current_user
+              = link_to t('views.user.profile'), current_user
             li
-              = link_to "Settings", edit_user_path(current_user)
+              = link_to t('views.user.settings'), edit_user_path(current_user)
             li.divider
             li
-              = link_to "Log out", destroy_user_session_path, method: :delete
+              = link_to t('views.user.log_out'), destroy_user_session_path, method: :delete
 
       - else
-        li = link_to 'log_in', new_user_session_path
-        li = link_to 'sign_in', new_user_registration_path
+        li = link_to t('views.user.log_in'), new_user_session_path
+        li = link_to t('views.user.sign_up'), new_user_registration_path

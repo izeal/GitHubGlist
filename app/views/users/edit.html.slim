@@ -1,13 +1,13 @@
-- provide(:title, 'settings')
+- provide(:title, t('views.user.settings'))
 
-h1 = 'settings'
+h1 = t('views.user.settings')
 
 .row
   .col-md-6.buffer-top
     = render 'form'
 
     p.buffer-top
-      = button_to 'change_password', edit_user_registration_path, method: :get,class: 'btn btn-primary'
+      = button_to t('views.user.change_password'), edit_user_registration_path, method: :get,class: 'btn btn-primary'
 
     p.buffer-top
-      = button_to 'delete_account', registration_path(@user), data: { confirm: 'destroy_confirm'}, method: :delete, class: 'btn btn-danger'
+      = button_to t('views.user.destroy'), registration_path(@user), data: { confirm: t('views.user.destroy_confirmation') }, method: :delete, class: 'btn btn-danger'

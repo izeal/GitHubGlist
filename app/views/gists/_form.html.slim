@@ -11,6 +11,8 @@
 
 
   .actions
-    = f.submit 'save', class: 'btn btn-primary'
-    = 'or'
-    = link_to 'back', :back
+    = f.submit t('views.btn.save'), class: 'btn btn-primary'
+    '
+    = t('views.btn.or')
+    '
+    = link_to t('views.btn.back'), :back

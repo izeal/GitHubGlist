@@ -1,0 +1,76 @@
+ru:
+  activerecord:
+    model:
+      user: 'Пользователь'
+      gist: 'Гист'
+      comment: 'Комментарий'
+    attributes:
+      user:
+        name: 'Имя'
+        email: 'Емэйл'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+      gist:
+        body: 'Код'
+        description: 'Название'
+      comment:
+        body: 'Комментарий'
+
+  controllers:
+    users:
+      updated: 'Ваш профиль успешно обновлен'
+    gists:
+      created: 'Гист создан'
+      updated: 'Гист обновлен'
+      destroyed: 'Гист удален'
+    comments:
+      created: 'Комментрий создан'
+      error: 'Текст комментария не может быть пустым'
+      updated: 'Комментарий обновлен'
+      destroyed: 'Комментарий удален'
+
+  views:
+    comment:
+      commented: 'Прокомментировано'
+      ago: 'назад'
+      destroy_confirmation: 'Вы действительно хотите удалить комментарий?'
+    btn:
+      save: 'Сохранить'
+      or: 'или'
+      back: 'вернуться'
+    gist:
+      created: 'Создан'
+      ago: 'назад'
+      destroy_confirmation: 'Вы действительно хотите удалить гист?'
+      discover: 'Найди свой гист!'
+      sort_options: 'Сортировать'
+      resently_created: 'Недавно созданные'
+      least_resently_created: 'Давно созданные'
+      resently_update: 'Недавно обновленные'
+      least_resently_updated: 'Давно обновленные'
+      create: 'Создать гист'
+      all: 'Все гисты'
+      new_gist: 'Новый гист'
+    user:
+      profile: 'Профиль'
+      settings: 'Настройки'
+      log_out: 'Выйти'
+      log_in: 'Войти'
+      sign_up: 'Зарегистрироваться'
+      change_password: 'Изменить пароль'
+      destroy: 'Удалить профиль'
+      destroy_confirmation: 'Вы уверены что хотите удалить Ваш профиль?'
+      created: 'Создал:'
+      not_created: 'Этот пользователь еще не создал ни одного гиста'
+      send_instructions: 'Выслать новые инструкции для подтверждения пароля'
+      resend: 'Выслать'
+      new_password: 'Новый пароль'
+      forgot_password: 'Забыли пароль?'
+      send_me_pas: 'Выслать мне письмо для восстановления пароля'
+      current_password: 'Текущий пароль'
+      not_receive_conf_inst: 'Не получили инструкции для подтверждения профиля?'
+
+  will_paginate:
+    previous_label: "Назад"
+    next_label: "Вперед"
+    page_gap: "…"
