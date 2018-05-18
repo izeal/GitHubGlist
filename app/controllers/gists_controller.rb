@@ -5,7 +5,6 @@ class GistsController < ApplicationController
     :resently_updated, :least_resently_updated
   ]
   before_action :set_current_user_gist, only: [:edit, :update, :destroy]
-  # проверять свой ли гист редактирует и удаляет юзер
 
   def index
     @gists = Gist.paginate(:page => params[:page], :per_page => 5).created_at_desc
@@ -43,7 +42,7 @@ class GistsController < ApplicationController
 
   def destroy
     user = @gist.user
-    @gist.destroy
+    @gist.destroy!
     redirect_to user_path(user), notice: t('controllers.gists.destroyed')
   end
 
@@ -79,6 +78,7 @@ class GistsController < ApplicationController
   end
 
   def set_current_user_gist
-    @gist = current_user.gists.find(params[:id])
+    @gist = current_user.gists.find_by(id: params[:id])
+    reject_user if @gist.nil?
   end
 end

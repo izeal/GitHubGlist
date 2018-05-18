@@ -8,5 +8,6 @@
       .buffer-both
         = render partial: 'comments/comment', collection: @comments
 
-    .buffer-top
-      = render partial: 'comments/form', locals: { comment: @new_comment || current_user.comments.build }
+    - if current_user
+      .buffer-top
+        = render partial: 'comments/form', locals: { comment: @new_comment || current_user.comments.build }

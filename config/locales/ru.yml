@@ -29,6 +29,8 @@ ru:
       error: 'Текст комментария не может быть пустым'
       updated: 'Комментарий обновлен'
       destroyed: 'Комментарий удален'
+    application:
+      alert: 'Вам сюда низя!'
 
   views:
     comment:

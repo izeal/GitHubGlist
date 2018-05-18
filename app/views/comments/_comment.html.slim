@@ -14,7 +14,8 @@ p
     - if current_user_can_edit?(comment)
       = link_to fa_icon('pencil'), edit_gist_comment_path(comment.gist, comment)
       '
-      = link_to fa_icon('trash'), gist_comment_path(comment.gist, comment), method: :delete, data: { confirm: t('views.comment.destroy_confirm') }
+    - if current_user_can_edit?(comment.gist) || current_user_can_edit?(comment)
+      = link_to fa_icon('trash'), gist_comment_path(comment.gist, comment), method: :delete, data: { confirm: t('views.comment.destroy_confirmation') }
 
 .thumbnail
   .caption

@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
   def current_user_can_edit?(model)
     model.user == current_user
   end
+
+  def reject_user
+    redirect_to root_path, alert: t('controllers.application.alert')
+  end
 end
