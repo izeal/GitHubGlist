@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_many :comments
 
   validates :name, presence: true, length: { maximum: 35 }
+
+  mount_uploader :avatar, AvatarUploader
 end

@@ -8,6 +8,7 @@ ru:
       user:
         name: 'Имя'
         email: 'Емэйл'
+        avatar: 'Аватарка'
         password: 'Пароль'
         password_confirmation: 'Подтверждение пароля'
       gist:
