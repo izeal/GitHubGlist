@@ -12,4 +12,10 @@ class GistMailer < ApplicationMailer
 
     mail to: @gist.user.email, subject: "Комментарий для #{@gist.description} удален"
   end
+
+  def star(star)
+    @star = star
+    @gist = @star.gist
+    mail to: @gist.user.email, subject: "Вашему гисту #{@gist.description} поставили звезду"
+  end
 end

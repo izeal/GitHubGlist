@@ -51,8 +51,9 @@ class GistsController < ApplicationController
   def upvote
     @gist = Gist.find(params[:gist_id])
     unless user_voted_for?(@gist)
-      @gist.stars.create!(user_id: current_user.id)
+      star = @gist.stars.create!(user_id: current_user.id)
       render :show
+      GistMailer.star(star).deliver_now unless current_user == @gist.user
     else
       redirect_to gist_path(@gist), alert: t('controllers.gists.alert')
     end

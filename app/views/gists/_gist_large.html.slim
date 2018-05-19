@@ -27,7 +27,7 @@ small
       - else
         = link_to fa_icon('star'), gist_upvote_path(@gist), method: :post
         '
-    -else
+    - else
       = fa_icon('star')
       '
     = pluralize(@gist.stars.count, t('views.gist.star', count: @gist.stars.count))
