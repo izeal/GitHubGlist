@@ -20,6 +20,8 @@ ru:
   controllers:
     users:
       updated: 'Ваш профиль успешно обновлен'
+      followers: Подписчики
+      following: Подписки
     gists:
       created: 'Гист создан'
       updated: 'Гист обновлен'

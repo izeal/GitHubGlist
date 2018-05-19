@@ -2,28 +2,11 @@
 
 .row
   aside.col-md-3
-    section.user_info
-      = image_tag user_avatar(@user)
-      h1 = @user.name
-      span
-        = link_to "view my profile", @user
-      span
-        b
-          | Gists:
-        = @user.gists.count
-
-    section
-      = link_to "#{@user.following.count} following", following_user_path(@user)
-      '
-      = link_to "#{@user.followers.count} followers", followers_user_path(@user)
-      - if @users.any?
-        .user_avatars
-          - @users.each do |user|
-            = link_to user_avatar(@user), user
+    = render 'users/user_sidebar'
   .col-md-9
     h3
       = @title
     - if @users.any?
-      ul.users.follow
-        = render @users
+      ul
+        = render partial: 'users/user', collection: @users
       = will_paginate
