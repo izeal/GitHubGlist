@@ -2,7 +2,7 @@
 
 .row
   .col.col-md-8
-    = render partial: 'gists/gist', object: @gist
+    = render partial: 'gists/gist_large', object: @gist
 
     - if @gist.comments.any?
       .buffer-both

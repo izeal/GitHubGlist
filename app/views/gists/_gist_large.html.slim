@@ -1,0 +1,42 @@
+p
+  span.user-avatar
+    = image_tag user_avatar(@gist.user), class: "img-icon"
+    '
+  = link_to @gist.user.name, user_path(@gist.user)
+  '  /
+  = link_to @gist.description, gist_path(@gist)
+
+small
+  = t('views.gist.created')
+  '
+  = time_ago_in_words(@gist.created_at)
+  '
+  = t('views.gist.ago')
+  '
+  - if current_user_can_edit?(@gist)
+    = link_to fa_icon('pencil'), edit_gist_path(@gist)
+    '
+    = link_to fa_icon('trash'), @gist, method: :delete, data: { confirm: t('views.gist.destroy_confirmation') }
+    '
+
+  .text-right
+    - if current_user
+      - if user_voted_for?(@gist)
+        = link_to fa_icon('star'), gist_downvote_path(@gist), method: :post, data: { confirm: t('views.gist.downvote_confirmation') }
+        '
+      - else
+        = link_to fa_icon('star'), gist_upvote_path(@gist), method: :post
+        '
+    -else
+      = fa_icon('star')
+      '
+    = pluralize(@gist.stars.count, t('views.gist.star', count: @gist.stars.count))
+    '
+    = fa_icon('comment')
+    '
+    = pluralize(@gist.comments.count, t('views.gist.comment', count: @gist.comments.count))
+
+.thumbnail
+  .caption
+    p
+      buffer-both = @gist.body

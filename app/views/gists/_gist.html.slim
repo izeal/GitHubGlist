@@ -5,6 +5,7 @@ p
   = link_to gist.user.name, user_path(gist.user)
   '  /
   = link_to gist.description, gist_path(gist)
+
 small
   = t('views.gist.created')
   '
@@ -12,10 +13,14 @@ small
   '
   = t('views.gist.ago')
   '
-  - if current_user_can_edit?(gist)
-    = link_to fa_icon('pencil'), edit_gist_path(gist)
-    = ' '
-    = link_to fa_icon('trash'), gist, method: :delete, data: { confirm: t('views.gist.destroy_confirmation') }
+  .text-right
+    = fa_icon('star')
+    '
+    = pluralize(gist.stars.count, t('views.gist.star', count: gist.stars.count))
+    '
+    = fa_icon('comment')
+    '
+    = pluralize(gist.comments.count, t('views.gist.comment', count: gist.comments.count))
 
 .thumbnail
   .caption

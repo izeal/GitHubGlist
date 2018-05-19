@@ -24,6 +24,7 @@ ru:
       created: 'Гист создан'
       updated: 'Гист обновлен'
       destroyed: 'Гист удален'
+      alert: Вы уже проголосовали
     comments:
       created: 'Комментрий создан'
       error: 'Текст комментария не может быть пустым'
@@ -52,10 +53,23 @@ ru:
       least_resently_created: 'Давно созданные'
       resently_update: 'Недавно обновленные'
       least_resently_updated: 'Давно обновленные'
+      popular: Популярные
       create: 'Создать гист'
       all: 'Все гисты'
       new_gist: 'Новый гист'
       edit: 'Редактировать гист'
+      star:
+        one: звезда
+        few: звезды
+        many: звёзд
+        other: звёзд
+      comment:
+        one: комментарий
+        few: комментария
+        many: комментариев
+        other: комментариев
+      downvote_confirmation: Вы дыйствительно хотите так проголосовать?
+
     user:
       profile: 'Профиль'
       settings: 'Настройки'

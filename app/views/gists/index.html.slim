@@ -15,6 +15,8 @@
             = link_to t('views.gist.resently_update'), resently_updated_gists_path
           li
             = link_to t('views.gist.least_resently_updated'), least_resently_updated_gists_path
+          / li
+            = link_to t('views.gist.popular'), popular_gists_path
 
   .row.buffer-bottom
     = render partial: 'gists/gist', collection: @gists

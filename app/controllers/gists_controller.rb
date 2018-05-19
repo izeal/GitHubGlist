@@ -6,6 +6,8 @@ class GistsController < ApplicationController
   ]
   before_action :set_current_user_gist, only: [:edit, :update, :destroy]
 
+  include ApplicationHelper
+
   def index
     @gists = Gist.paginate(:page => params[:page], :per_page => 5).created_at_desc
   end
@@ -46,6 +48,26 @@ class GistsController < ApplicationController
     redirect_to user_path(user), notice: t('controllers.gists.destroyed')
   end
 
+  def upvote
+    @gist = Gist.find(params[:gist_id])
+    unless user_voted_for?(@gist)
+      @gist.stars.create!(user_id: current_user.id)
+      render :show
+    else
+      redirect_to gist_path(@gist), alert: t('controllers.gists.alert')
+    end
+  end
+
+  def downvote
+    @gist = Gist.find(params[:gist_id])
+    star = Star.find_by(user_id: current_user.id)
+    unless star.nil?
+      star.destroy!
+      render :show
+    else
+      redirect_to gist_path(@gist), alert: t('controllers.gists.alert')
+    end
+  end
 
   def resently_created
     @gists = Gist.paginate(:page => params[:page], :per_page => 5).created_at_desc
@@ -77,6 +99,8 @@ class GistsController < ApplicationController
     params.require(:gist).permit(:description, :body)
   end
 
+# здесь правильно сделал что в одном методе и поиск гиста и
+# посыл любопытного юзера?
   def set_current_user_gist
     @gist = current_user.gists.find_by(id: params[:id])
     reject_user if @gist.nil?
