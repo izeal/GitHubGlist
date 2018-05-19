@@ -5,6 +5,7 @@ class GistsController < ApplicationController
     :resently_updated, :least_resently_updated
   ]
   before_action :set_current_user_gist, only: [:edit, :update, :destroy]
+  before_action :pincode_guard!, only:[:show]
 
   include ApplicationHelper
 
@@ -97,7 +98,7 @@ class GistsController < ApplicationController
   end
 
   def gist_params
-    params.require(:gist).permit(:description, :body)
+    params.require(:gist).permit(:description, :body, :pincode)
   end
 
 # здесь правильно сделал что в одном методе и поиск гиста и
@@ -105,5 +106,18 @@ class GistsController < ApplicationController
   def set_current_user_gist
     @gist = current_user.gists.find_by(id: params[:id])
     reject_user if @gist.nil?
+  end
+
+  def pincode_guard!
+    return true if @gist.pincode.blank?
+    return true if @gist.user == current_user
+    if params[:pincode] && @gist.pincode_valid?(params[:pincode])
+      cookies.permanent["gists_#{@gist.id}_pincode"] = params[:pincode]
+    end
+
+    unless @gist.pincode_valid?(cookies.permanent["gists_#{@gist.id}_pincode"])
+      flash.now[:alert] = "Плохой пин дружище" if params[:pincode]
+      render 'pincode_form'
+    end
   end
 end

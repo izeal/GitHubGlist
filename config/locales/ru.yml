@@ -73,7 +73,7 @@ ru:
         few: комментария
         many: комментариев
         other: комментариев
-      downvote_confirmation: Вы дыйствительно хотите так проголосовать?
+      downvote_confirmation: Вы дыйствительно хотите удалить свой голос?
 
     user:
       profile: 'Профиль'

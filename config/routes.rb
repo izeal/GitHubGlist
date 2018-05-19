@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :comments
     post :upvote
     post :downvote
+    post :show, on: :member
     collection do
       get :resently_created
       get :least_resently_created

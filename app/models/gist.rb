@@ -23,4 +23,8 @@ class Gist < ApplicationRecord
   scope :updated_at_desc, -> {
     order(updated_at: :desc)
   }
+
+  def pincode_valid?(input_pincode)
+    pincode == input_pincode
+  end
 end
