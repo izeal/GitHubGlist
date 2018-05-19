@@ -5,7 +5,7 @@ h1 = t('views.user.settings')
 .row
   .col-md-6.buffer-top
     = render 'form'
-
+   # bug fix
     p.buffer-top
       = button_to t('views.user.change_password'), edit_user_registration_path, method: :get,class: 'btn btn-primary'
 
