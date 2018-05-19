@@ -32,6 +32,9 @@ ru:
       destroyed: 'Комментарий удален'
     application:
       alert: 'Вам сюда низя!'
+    relationships:
+      created: Вы подписались на новости данного пользователя
+      destroyed: Вы отписались от новостей данного пользователя
 
   views:
     comment:

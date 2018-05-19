@@ -2,9 +2,16 @@
 
 .row
   .col-md-3
-    .text-center
+    .text-left
       = image_tag user_avatar(@user)
       h1 = @user.name
+
+      = link_to "#{@user.following.count} following", following_user_path(@user)
+      '
+      = link_to "#{@user.followers.count} followers", followers_user_path(@user)
+
+      = render 'follow_form' if current_user
+
 
   .col-md-9
     - if @user.gists.any?
