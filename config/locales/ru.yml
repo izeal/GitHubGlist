@@ -91,6 +91,19 @@ ru:
       send_me_pas: 'Выслать мне письмо для изменения пароля'
       current_password: 'Текущий пароль'
       not_receive_conf_inst: 'Не получили инструкции для подтверждения профиля?'
+      gists_count: Количество гистов
+      follow: Подписаться
+      unfollow: Отписаться
+      following:
+        one: подписка
+        few: подписки
+        many: подписок
+        other: подписок
+      followers:
+        one: подписчик
+        few: подписчика
+        many: подписчиков
+        other: подписчиков
 
   will_paginate:
     previous_label: "Назад"

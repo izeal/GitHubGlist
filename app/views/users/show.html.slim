@@ -2,16 +2,23 @@
 
 .row
   .col-md-3
-    .text-left
+    section
       = image_tag user_avatar(@user)
       h1 = @user.name
+      span
+        = "#{t('views.user.gists_count')}: #{@user.gists.count}"
 
-      = link_to "#{@user.following.count} following", following_user_path(@user)
-      '
-      = link_to "#{@user.followers.count} followers", followers_user_path(@user)
+    section
+      = link_to pluralize(@user.following.count, t('views.user.following', count: @user.following.count)), following_user_path(@user)
+      '  |
+      = link_to pluralize(@user.followers.count, t('views.user.followers', count: @user.followers.count)), followers_user_path(@user)
 
       = render 'follow_form' if current_user
 
+    - if @users.any?
+      .user_avatar
+        - @users.each do |user|
+          = link_to (image_tag user_avatar_thumb(user), class: "img-icon"), user
 
   .col-md-9
     - if @user.gists.any?

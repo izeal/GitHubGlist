@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :check_user, only: [:edit, :update, :destroy]
+  # before_action :check_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show] # дублирование колбэков
   before_action :set_current_user, except: [:show]
 
   def show
     @user = User.find(params[:id])
+    @users = @user.followers
   end
 
   def edit
@@ -16,6 +17,20 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private
