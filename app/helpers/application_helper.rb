@@ -30,6 +30,10 @@ module ApplicationHelper
     user.avatar? ? user.avatar.url : asset_path('avatar.jpg')
   end
 
+  def user_avatar_thumb(user)
+    user.avatar? ? user.avatar.thumb.url : asset_path('avatar_thumb.jpg')
+  end
+
   def user_voted_for?(gist)
     current_user == gist.stars.find_by(user_id: current_user.id).try(:user)
   end

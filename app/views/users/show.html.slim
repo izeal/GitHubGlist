@@ -2,10 +2,7 @@
 
 .row
   .col-md-3
-    .text-center
-      = image_tag user_avatar(@user)
-      h1 = @user.name
-
+    = render 'user_sidebar'
   .col-md-9
     - if @user.gists.any?
       h3 = t('views.user.created')
