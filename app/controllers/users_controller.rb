@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :check_user, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show] # дублирование колбэков
+  before_action :authenticate_user!, except: [:show]
   before_action :set_current_user, except: [:show]
 
   def show
@@ -41,9 +40,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :name, :avatar)
-  end
-
-  def check_user
-    reject_user unless current_user == @user
   end
 end
