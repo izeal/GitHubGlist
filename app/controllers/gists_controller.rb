@@ -91,10 +91,10 @@ class GistsController < ApplicationController
     render :index
   end
 
-  # def popular
-  #   @gists = Gist.paginate(:page => params[:page], :per_page => 5).popular
-  #   render :index
-  # end
+  def popular
+    @gists = Gist.paginate(:page => params[:page], :per_page => 5).popular
+    render :index
+  end
 
   private
 
