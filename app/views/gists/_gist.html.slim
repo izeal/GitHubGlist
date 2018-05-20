@@ -23,6 +23,8 @@ small
     = pluralize(gist.comments.count, t('views.gist.comment', count: gist.comments.count))
 
 .thumbnail
-  .caption
+  - if gist.pincode
+    p = t('views.gist.secret_gist')
+  - else
     p
       buffer-both = gist.body

@@ -6,7 +6,6 @@ class DeletedUser
   end
 
   def avatar?
-    # asset_path('deleted.jpg')
   end
 
   def null_object?

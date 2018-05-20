@@ -21,6 +21,8 @@ class Gist < ApplicationRecord
     joins(:stars).group(:id).order('COUNT("stars"."id") DESC')
   }
 
+  # todo news scope
+
   def pincode_valid?(input_pincode)
     pincode == input_pincode
   end

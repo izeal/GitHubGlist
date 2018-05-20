@@ -27,7 +27,11 @@ module ApplicationHelper
   end
 
   def user_avatar(user)
-    user.avatar? ? user.avatar.url : asset_path('avatar.jpg')
+    if user.null_object?
+      asset_path('deleted.jpg')
+    else
+      user.avatar? ? user.avatar.url : asset_path('avatar.jpg')
+    end
   end
 
   def user_avatar_thumb(user)
