@@ -22,11 +22,11 @@
           fieldset.form-group
             = f.label :password
             - if @minimum_password_length
-            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: true
+            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: true, type: "password"
 
           fieldset.form-group
             = f.label :password_confirmation
-            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: true
+            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: true, type: "password"
 
           .actions
             = f.submit t('views.user.sign_up'), class: 'btn btn-primary'

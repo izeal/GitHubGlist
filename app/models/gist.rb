@@ -28,3 +28,10 @@ class Gist < ApplicationRecord
     pincode == input_pincode
   end
 end
+
+# добавить интернализацию
+# добавить валидации на пинкод попробовать
+#
+#
+#
+#

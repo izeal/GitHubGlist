@@ -15,11 +15,11 @@
 
           fieldset.form-group
             = f.label :password, t('views.user.new_password')
-            = f.password_field :password, autofocus: true, autocomplete: "off", placeholder: true, class: 'form-control'
+            = f.password_field :password, autofocus: true, autocomplete: "off", placeholder: true, class: 'form-control', type: "password"
 
           fieldset.form-group
             = f.label :password_confirmation
-            = f.password_field :password_confirmation, autocomplete: "off", placeholder: true, class: 'form-control'
+            = f.password_field :password_confirmation, autocomplete: "off", placeholder: true, class: 'form-control', type: "password"
 
           .actions
             = f.submit t('views.btn.save'), class: 'btn btn-primary'

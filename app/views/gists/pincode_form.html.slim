@@ -1,12 +1,21 @@
-h1 Доступ только по пинкоду
+- provide(:title, t('views.gist.acces'))
 
-= form_tag('', method: :post) do |f|
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default.devise-bs
+      .panel-heading
+        h2 = t('views.gist.acces')
 
-  .form-group
-    = label "Пинкод", :pincode
-    = text_field_tag :pincode, params[:pincode], class: 'form-control'
+      .panel-body
+        = form_tag('', method: :post) do |f|
 
-  .actions
-    = submit_tag
+          .form-group
+            = label :pincode, t('activerecord.attributes.gist.pincode')
+            = text_field_tag :pincode, params[:pincode], class: 'form-control', placeholder: t('activerecord.attributes.gist.pincode'), type: "password"
 
-= link_to 'На главную', root_path
+          .actions
+            = submit_tag t('views.btn.send'), class: 'btn btn-primary'
+            '
+            = t('views.btn.or')
+            '
+            = link_to t('views.btn.back'), :back

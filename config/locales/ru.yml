@@ -14,6 +14,7 @@ ru:
       gist:
         body: 'Код'
         description: 'Название'
+        pincode: Пинкод
       comment:
         body: 'Комментарий'
 
@@ -27,6 +28,7 @@ ru:
       updated: 'Гист обновлен'
       destroyed: 'Гист удален'
       alert: Вы уже проголосовали
+      pin_alert: Введите верный пинкод
     comments:
       created: 'Комментрий создан'
       error: 'Текст комментария не может быть пустым'
@@ -48,6 +50,7 @@ ru:
       save: 'Сохранить'
       or: 'или'
       back: 'вернуться'
+      send: Отправить
     gist:
       created: 'Создан'
       ago: 'назад'
@@ -74,6 +77,7 @@ ru:
         many: комментариев
         other: комментариев
       downvote_confirmation: Вы дыйствительно хотите удалить свой голос?
+      acces: Доступ только по пинкоду
 
     user:
       profile: 'Профиль'

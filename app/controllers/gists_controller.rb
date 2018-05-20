@@ -116,7 +116,7 @@ class GistsController < ApplicationController
     end
 
     unless @gist.pincode_valid?(cookies.permanent["gists_#{@gist.id}_pincode"])
-      flash.now[:alert] = "Плохой пин дружище" if params[:pincode]
+      flash.now[:alert] = t('controllers.gists.pin_alert') if params[:pincode]
       render 'pincode_form'
     end
   end
