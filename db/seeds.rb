@@ -1,3 +1,5 @@
+ActionMailer::Base.perform_deliveries = false
+
 User.create(
     name:'Ivan',
     email: 'foo@bar.baz',
@@ -13,6 +15,7 @@ User.create(
   )
 end
 
+########
 users = User.all
 
 users.each do |user|
@@ -23,10 +26,41 @@ users.each do |user|
   end
 end
 
+users_id = users.map(&:id)
+
+users.each do |user|
+  arr_past_id = [user.id]
+  rand(5..users.count).times do
+    sample_id = users_id.sample
+    unless arr_past_id.include?(sample_id)
+      arr_past_id << sample_id
+      user.active_relationships.create(followed_id: sample_id)
+    end
+  end
+end
+
+########
 gists = Gist.all
 
 gists.each do |gist|
   rand(0..6).times do
     gist.comments.create(body: Faker::Lorem.paragraphs(rand(10), true).join, user_id: users.sample.id)
+  end
+end
+
+gists.each do |gist|
+  rand(0..1).times do
+    gist.update(pincode: "1111")
+  end
+end
+
+gists.each do |gist|
+  arr_past_id = [gist.user.id]
+  rand(0..users.count).times do
+    sample_id = users_id.sample
+    unless arr_past_id.include?(sample_id)
+      arr_past_id << sample_id
+      gist.stars.create(user_id: sample_id)
+    end
   end
 end

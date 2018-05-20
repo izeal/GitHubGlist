@@ -7,6 +7,7 @@ class Gist < ApplicationRecord
   validates :user, presence: true
   validates :description, presence: true, length: { maximum: 255 }
   validates :body, presence: true
+  validates :pincode, length: 4..10, format: { with: /\A\d+\z/ }
 
   scope :created_at_asc, -> {
     order(created_at: :asc)
@@ -28,10 +29,3 @@ class Gist < ApplicationRecord
     pincode == input_pincode
   end
 end
-
-# добавить интернализацию
-# добавить валидации на пинкод попробовать
-#
-#
-#
-#
