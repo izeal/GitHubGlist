@@ -5,4 +5,9 @@ class Comment < ApplicationRecord
   validates :user, presence: true
   validates :gist, presence: true
   validates :body, presence: true
+
+
+  def user_object
+    user || DeletedUser.new
+  end
 end

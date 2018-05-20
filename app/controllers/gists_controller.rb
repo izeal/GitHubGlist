@@ -2,7 +2,7 @@ class GistsController < ApplicationController
   before_action :find_gist, only: [:show]
   before_action :authenticate_user!, except: [
     :show, :index, :resently_created, :least_resently_created,
-    :resently_updated, :least_resently_updated
+    :resently_updated, :least_resently_updated, :popular
   ]
   before_action :set_current_user_gist, only: [:edit, :update, :destroy]
   before_action :pincode_guard!, only:[:show]
@@ -91,10 +91,10 @@ class GistsController < ApplicationController
     render :index
   end
 
-  # def popular
-  #   @gists = Gist.paginate(:page => params[:page], :per_page => 5).popular
-  #   render :index
-  # end
+  def popular
+    @gists = Gist.paginate(:page => params[:page], :per_page => 5).popular
+    render :index
+  end
 
   private
 
