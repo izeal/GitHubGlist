@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_can_edit?(model)
-    model.user == current_user
+    current_user && model.user == current_user
   end
 
   def reject_user

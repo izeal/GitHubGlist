@@ -5,7 +5,7 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
 
   has_many :gists, dependent: :destroy
-  has_many :comments, dependent: :nullify #todo null obj if user deleted
+  has_many :comments, dependent: :nullify
   has_many :stars, dependent: :destroy
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -26,5 +26,9 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def null_object?
+    false
   end
 end
