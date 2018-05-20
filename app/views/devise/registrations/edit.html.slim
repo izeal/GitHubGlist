@@ -13,11 +13,11 @@
 
           fieldset.form-group
             = f.label :password, t('views.user.new_password')
-            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: true
+            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: true, type: "password"
 
           fieldset.form-group
             = f.label :password_confirmation
-            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: true
+            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: true, type: "password"
 
           fieldset.form-group
             = f.label :current_password, t('views.user.current_password')

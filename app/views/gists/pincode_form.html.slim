@@ -1,0 +1,21 @@
+- provide(:title, t('views.gist.acces'))
+
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default.devise-bs
+      .panel-heading
+        h2 = t('views.gist.acces')
+
+      .panel-body
+        = form_tag('', method: :post) do |f|
+
+          .form-group
+            = label :pincode, t('activerecord.attributes.gist.pincode')
+            = text_field_tag :pincode, params[:pincode], class: 'form-control', placeholder: t('activerecord.attributes.gist.pincode'), type: "password"
+
+          .actions
+            = submit_tag t('views.btn.send'), class: 'btn btn-primary'
+            '
+            = t('views.btn.or')
+            '
+            = link_to t('views.btn.back'), :back
