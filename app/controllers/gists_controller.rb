@@ -91,6 +91,11 @@ class GistsController < ApplicationController
     render :index
   end
 
+  # def popular
+  #   @gists = Gist.paginate(:page => params[:page], :per_page => 5).popular
+  #   render :index
+  # end
+
   private
 
   def find_gist
@@ -111,13 +116,18 @@ class GistsController < ApplicationController
   def pincode_guard!
     return true if @gist.pincode.blank?
     return true if @gist.user == current_user
-    if params[:pincode] && @gist.pincode_valid?(params[:pincode])
-      cookies.permanent["gists_#{@gist.id}_pincode"] = params[:pincode]
-    end
 
-    unless @gist.pincode_valid?(cookies.permanent["gists_#{@gist.id}_pincode"])
-      flash.now[:alert] = t('controllers.gists.pin_alert') if params[:pincode]
-      render 'pincode_form'
+    if current_user
+      if params[:pincode] && @gist.pincode_valid?(params[:pincode])
+        cookies.permanent["gists_#{@gist.id}_pincode"] = params[:pincode]
+      end
+
+      unless @gist.pincode_valid?(cookies.permanent["gists_#{@gist.id}_pincode"])
+        flash.now[:alert] = t('controllers.gists.pin_alert') if params[:pincode]
+        render 'pincode_form'
+      end
+    else
+      redirect_to new_user_session_path, notice: t('controllers.gists.redirect')
     end
   end
 end

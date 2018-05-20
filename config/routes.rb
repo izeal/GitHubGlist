@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get :least_resently_created
       get :resently_updated
       get :least_resently_updated
-      # todo get :popular
+      # get :popular
     end
   end
   resources :users, only: [:show, :edit, :update] do

@@ -50,7 +50,7 @@ end
 
 gists.each do |gist|
   rand(0..1).times do
-    gist.update(pincode: "1111")
+    gist.update(pincode: 1111)
   end
 end
 
@@ -64,3 +64,5 @@ gists.each do |gist|
     end
   end
 end
+
+users.each { |user| user.update(confirmed_at: Time.now) }
