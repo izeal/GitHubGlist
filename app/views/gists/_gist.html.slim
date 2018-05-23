@@ -1,6 +1,6 @@
 p
   span.user-avatar
-    = image_tag user_avatar(gist.user), class: "img-icon"
+    = image_tag gist.user.decorate.avatar, class: "img-icon"
     '
   = link_to gist.user.name, user_path(gist.user)
   '  /
@@ -23,7 +23,7 @@ small
     = pluralize(gist.comments.count, t('views.gist.comment', count: gist.comments.count))
 
 .thumbnail
-  - if gist.pincode
+  - unless gist.pincode.blank?
     p = t('views.gist.secret_gist')
   - else
     p

@@ -12,7 +12,7 @@
           a.dropdown-toggle[href="#" data-toggle="dropdown"]
             |
             span.user-avatar
-              = image_tag user_avatar(current_user), class: "img-icon"
+              = image_tag current_user.decorate.avatar, class: "img-icon"
             b.caret
           ul.dropdown-menu
             li

@@ -7,15 +7,13 @@ class GistsController < ApplicationController
   before_action :set_current_user_gist, only: [:edit, :update, :destroy]
   before_action :pincode_guard!, only:[:show]
 
-  include ApplicationHelper
-
   def index
     @gists = Gist.paginate(:page => params[:page], :per_page => 5).created_at_desc
   end
 
   def show
-    @new_comment = @gist.comments.build(params[:comment])
     @comments = @gist.comments.select(&:persisted?)
+    @new_comment = @gist.comments.build(params[:comment])
   end
 
   def new
@@ -51,7 +49,7 @@ class GistsController < ApplicationController
 
   def upvote
     @gist = Gist.find(params[:gist_id])
-    unless user_voted_for?(@gist)
+    unless current_user.voted_for?(@gist)
       star = @gist.stars.create!(user_id: current_user.id)
       render :show
       GistMailer.star(star).deliver_now unless current_user == @gist.user
@@ -63,7 +61,7 @@ class GistsController < ApplicationController
   def downvote
     @gist = Gist.find(params[:gist_id])
     star = Star.find_by(user_id: current_user.id)
-    unless star.nil?
+    unless star.blank?
       star.destroy!
       render :show
     else
@@ -72,27 +70,27 @@ class GistsController < ApplicationController
   end
 
   def resently_created
-    @gists = Gist.paginate(:page => params[:page], :per_page => 5).created_at_desc
+    @gists = gists_paginate.created_at_desc
     render :index
   end
 
   def least_resently_created
-   @gists = Gist.paginate(:page => params[:page], :per_page => 5).created_at_asc
+    @gists = gists_paginate.created_at_asc
     render :index
   end
 
   def resently_updated
-    @gists = Gist.paginate(:page => params[:page], :per_page => 5).updated_at_desc
+    @gists = gists_paginate.updated_at_desc
     render :index
   end
 
   def least_resently_updated
-    @gists = Gist.paginate(:page => params[:page], :per_page => 5).updated_at_asc
+    @gists = gists_paginate.updated_at_asc
     render :index
   end
 
   def popular
-    @gists = Gist.paginate(:page => params[:page], :per_page => 5).popular
+    @gists = gists_paginate.popular
     render :index
   end
 
@@ -106,8 +104,6 @@ class GistsController < ApplicationController
     params.require(:gist).permit(:description, :body, :pincode)
   end
 
-# здесь правильно сделал что в одном методе и поиск гиста и
-# посыл любопытного юзера?
   def set_current_user_gist
     @gist = current_user.gists.find_by(id: params[:id])
     reject_user if @gist.nil?
@@ -129,5 +125,9 @@ class GistsController < ApplicationController
     else
       redirect_to new_user_session_path, notice: t('controllers.gists.redirect')
     end
+  end
+
+  def gists_paginate
+    Gist.paginate(:page => params[:page], :per_page => 5)
   end
 end

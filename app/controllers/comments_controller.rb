@@ -35,11 +35,9 @@ class CommentsController < ApplicationController
 
   private
 
-# тоже самое, правильно ли что сюда реджект вставил - может вставить рендер
-# на рут с ошибкой?
   def find_comment
     @comment = Comment.find_by(id: params[:id])
-    reject_user if @comment.nil?
+    reject_user if @comment.blank?
   end
 
   def find_gist

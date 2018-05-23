@@ -1,11 +1,15 @@
 class DeletedUser
-  include ApplicationHelper
 
   def name
     "Deleted"
   end
 
-  def avatar?
+  def decorate
+    self
+  end
+
+  def avatar
+    ActionController::Base.helpers.asset_path('deleted.jpg')
   end
 
   def null_object?

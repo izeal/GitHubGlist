@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user_can_edit?
 
+  private
+
   def config_params_for_edit
     devise_parameter_sanitizer.permit(
       :account_update,
