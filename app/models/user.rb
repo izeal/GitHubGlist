@@ -31,4 +31,12 @@ class User < ApplicationRecord
   def null_object?
     false
   end
+
+  def decorate
+    @decorate ||= UserDecorator.new(self)
+  end
+
+  def voted_for?(gist)
+    self == gist.stars.find_by(user_id: self.id).try(:user)
+  end
 end

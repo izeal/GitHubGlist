@@ -1,6 +1,6 @@
 p
   span.user-avatar
-    = image_tag user_avatar(@gist.user), class: "img-icon"
+    = image_tag @gist.user.decorate.avatar, class: "img-icon"
     '
   = link_to @gist.user.name, user_path(@gist.user)
   '  /
@@ -21,7 +21,7 @@ small
 
   .text-right
     - if current_user
-      - if user_voted_for?(@gist)
+      - if current_user.voted_for?(@gist)
         = link_to fa_icon('star'), gist_downvote_path(@gist), method: :post, data: { confirm: t('views.gist.downvote_confirmation') }
         '
       - else

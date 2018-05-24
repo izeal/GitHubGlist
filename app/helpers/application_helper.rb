@@ -25,20 +25,4 @@ module ApplicationHelper
   def fa_icon(icon_class)
     content_tag 'span', '', class: "fa fa-#{icon_class}"
   end
-
-  def user_avatar(user)
-    if user.null_object?
-      asset_path('deleted.jpg')
-    else
-      user.avatar? ? user.avatar.url : asset_path('avatar.jpg')
-    end
-  end
-
-  def user_avatar_thumb(user)
-    user.avatar? ? user.avatar.thumb.url : asset_path('avatar_thumb.jpg')
-  end
-
-  def user_voted_for?(gist)
-    current_user == gist.stars.find_by(user_id: current_user.id).try(:user)
-  end
 end

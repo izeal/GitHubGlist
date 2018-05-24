@@ -1,6 +1,6 @@
 p
   span.user-avatar
-    = image_tag user_avatar(comment.user_object), class: "img-icon"
+    = image_tag comment.user_object.decorate.avatar, class: "img-icon"
     '
   = link_to_unless(comment.user_object.null_object?, comment.user_object.name, user_path(comment.user_object))
   '
